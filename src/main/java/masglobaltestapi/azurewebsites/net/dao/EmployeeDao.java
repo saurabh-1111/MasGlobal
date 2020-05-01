@@ -9,6 +9,7 @@ public interface EmployeeDao {
     
     List<Employee> getAllEmployees();
     Optional<Employee> getEmployeeById(int id);
+    int addEmployee(Employee employee);
     int getAnualSalary(int salary);
     
     

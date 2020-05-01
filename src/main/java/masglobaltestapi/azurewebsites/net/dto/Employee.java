@@ -28,11 +28,14 @@ public class Employee {
         this.roleDescription = roleDescription;
         this.hourlySalary = hourlySalary;
         this.monthlySalary = monthlySalary;
+        
+        System.out.println("Employee called. id: " + id);
     }
 
 
 
     public int getId() {
+        System.out.println("Employee getId called. id: " + id);
         return id;
     }
 
