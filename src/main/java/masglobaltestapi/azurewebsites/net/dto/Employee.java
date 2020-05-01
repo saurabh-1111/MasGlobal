@@ -1,4 +1,4 @@
-package masglobaltestapi.azurewebsites.net.model;
+package masglobaltestapi.azurewebsites.net.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
