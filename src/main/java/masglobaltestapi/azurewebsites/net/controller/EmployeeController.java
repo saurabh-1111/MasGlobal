@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +24,8 @@ import org.springframework.web.client.RestTemplate;
 import masglobaltestapi.azurewebsites.net.dto.Employee;
 import masglobaltestapi.azurewebsites.net.service.EmployeeService;
 
+@CrossOrigin
 @RequestMapping("/api/employee")
-//("http://masglobaltestapi.azurewebsites.net/api/employees")
 @RestController
 public class EmployeeController {
     
@@ -48,39 +49,15 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
     
-    //@PostMapping
+    @PostMapping
     public int addEmployee(@Valid @NonNull @RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
     
-    @PostMapping
-    private void getUsers(@Valid @NonNull @RequestBody Employee employee) {
-
-        final String uri = "http://masglobaltestapi.azurewebsites.net/api/employees";
-        RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri, String.class);      
-        System.out.println(" result: " + result); 
-        
-        try {
-            //JSONObject jsonResponse = new JSONObject(result);
-            JSONArray employeeList = new JSONArray(result);
-            
-            //Employee employee1 = (Employee) jsonResponse.get(0);
-            
-            JSONObject obj = (JSONObject) employeeList.get(0);
-            obj.get("name");
-            
-            //Employee employee1 = (Employee) obj;
-            
-            
-            String value = employeeList.get(0).toString() ;// ("name");  
-            System.out.println(" value.toString(): " + obj.get("name")); 
-        } catch (JSONException e) {
-        e.printStackTrace();
-        }
+    
         
         
-   }
+   
     
     
 }

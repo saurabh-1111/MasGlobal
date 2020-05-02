@@ -16,7 +16,7 @@ public class Employee {
     private final String roleDescription;
     private final int hourlySalary ;
     private final int monthlySalary ;
-    private int anualSalary;
+    private int annualSalary;
     
  
 
@@ -36,6 +36,10 @@ public class Employee {
         
         System.out.println("Employee called. id: " + id);
     }
+
+
+
+    
 
 
 
@@ -88,20 +92,20 @@ public class Employee {
 
 
 
-    public int getAnualSalary() {
-        return anualSalary;
+    public int getAnnualSalary() {
+        return annualSalary;
     }
 
 
 
-    public void setAnualSalary(int anualSalary) {
-        this.anualSalary = anualSalary;
+    public void setAnnualSalary(int annualSalary) {
+        this.annualSalary = annualSalary;
     }
     
     @Override
     public String toString() {
         return "Employee [id=" + id + ", name=" + name + ", contractTypeName=" + contractTypeName + ", roleId=" + roleId
                 + ", roleName=" + roleName + ", roleDescription=" + roleDescription + ", hourlySalary=" + hourlySalary
-                + ", monthlySalary=" + monthlySalary + ", anualSalary=" + anualSalary + "]";
+                + ", monthlySalary=" + monthlySalary + ", anualSalary=" + annualSalary + "]";
     }
 }

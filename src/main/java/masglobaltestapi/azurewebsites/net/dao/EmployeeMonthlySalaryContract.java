@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import masglobaltestapi.azurewebsites.net.dto.Employee;
 
 @Repository("MonthlySalaryContract")
-public class EmployeeMonthlySalaryContract implements EmployeeDao{
+public class EmployeeMonthlySalaryContract implements EmployeeContractDao{
     
     /*
     private static List<Employee> employeeList = new ArrayList<>();
