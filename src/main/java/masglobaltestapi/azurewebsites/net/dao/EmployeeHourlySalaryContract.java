@@ -42,7 +42,7 @@ public class EmployeeHourlySalaryContract implements EmployeeDao {
     */
     
     @Override
-    public int getAnualSalary(int salary) {
+    public int getAnnualSalary(int salary) {
         System.out.println("EmployeeHourlySalaryContract getAnualSalary called.");
         
         salary = 120 * salary * 12;

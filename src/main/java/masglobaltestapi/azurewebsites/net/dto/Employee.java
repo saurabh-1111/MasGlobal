@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Employee {
     
+    
+
+
+
     private final int id;
     private final String name;
     private final String contractTypeName ;
@@ -12,6 +16,7 @@ public class Employee {
     private final String roleDescription;
     private final int hourlySalary ;
     private final int monthlySalary ;
+    private int anualSalary;
     
  
 
@@ -79,5 +84,24 @@ public class Employee {
 
     public int getMonthlySalary() {
         return monthlySalary;
+    }
+
+
+
+    public int getAnualSalary() {
+        return anualSalary;
+    }
+
+
+
+    public void setAnualSalary(int anualSalary) {
+        this.anualSalary = anualSalary;
+    }
+    
+    @Override
+    public String toString() {
+        return "Employee [id=" + id + ", name=" + name + ", contractTypeName=" + contractTypeName + ", roleId=" + roleId
+                + ", roleName=" + roleName + ", roleDescription=" + roleDescription + ", hourlySalary=" + hourlySalary
+                + ", monthlySalary=" + monthlySalary + ", anualSalary=" + anualSalary + "]";
     }
 }

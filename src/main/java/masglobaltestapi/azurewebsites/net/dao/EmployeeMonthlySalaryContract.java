@@ -41,7 +41,7 @@ public class EmployeeMonthlySalaryContract implements EmployeeDao{
     */
     
     @Override
-    public int getAnualSalary(int salary) {
+    public int getAnnualSalary(int salary) {
         System.out.println("EmployeeMonthlySalaryContract getAnualSalary called.");
         salary *= 12; 
         return salary;

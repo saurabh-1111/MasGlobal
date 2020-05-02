@@ -12,7 +12,7 @@ public interface EmployeeDao {
     Optional<Employee> getEmployeeById(int id);
     int addEmployee(Employee employee);
     */
-    int getAnualSalary(int salary);
+    int getAnnualSalary(int salary);
     
     
 }
