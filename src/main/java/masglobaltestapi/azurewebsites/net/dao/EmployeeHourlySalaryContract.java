@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import masglobaltestapi.azurewebsites.net.dto.Employee;
 
-@Repository("Emp1")
+@Repository("HourlySalaryContract")
 public class EmployeeHourlySalaryContract implements EmployeeDao {
     
+    /*
     private static List<Employee> employeeList = new ArrayList<>();
 
     @Override
@@ -29,6 +30,17 @@ public class EmployeeHourlySalaryContract implements EmployeeDao {
                .findFirst();
     }
 
+   
+
+    @Override
+    public int addEmployee(Employee employee) {
+        employeeList.add(new Employee(employee.getId(), employee.getName(), employee.getContractTypeName(), employee.getRoleId(), employee.getRoleName(), employee.getRoleDescription(), employee.getHourlySalary(), employee.getMonthlySalary()));
+        
+        
+        return 1;
+    }
+    */
+    
     @Override
     public int getAnualSalary(int salary) {
         System.out.println("EmployeeHourlySalaryContract getAnualSalary called.");
@@ -37,14 +49,6 @@ public class EmployeeHourlySalaryContract implements EmployeeDao {
         
         return salary;
 
-    }
-
-    @Override
-    public int addEmployee(Employee employee) {
-        employeeList.add(new Employee(employee.getId(), employee.getName(), employee.getContractTypeName(), employee.getRoleId(), employee.getRoleName(), employee.getRoleDescription(), employee.getHourlySalary(), employee.getMonthlySalary()));
-        
-        
-        return 1;
     }
     
 }

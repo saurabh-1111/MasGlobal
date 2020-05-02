@@ -1,5 +1,6 @@
 package masglobaltestapi.azurewebsites.net.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,20 +16,23 @@ public class EmployeeService {
     
     private final EmployeeDao employeeDao;
     
+    private static List<Employee> employeeList = new ArrayList<>();
+    
     @Autowired
-    public EmployeeService(@Qualifier("Emp") EmployeeDao employeeDao) {
+    public EmployeeService(@Qualifier("HourlySalaryContract") EmployeeDao employeeDao) {
         System.out.println("EmployeeService called.");
         this.employeeDao = employeeDao;
     }
     
+       
     public List<Employee> getAllEmployees(){
         System.out.println("EmployeeService getAllEmployees called.");
-        return employeeDao.getAllEmployees();
+        return employeeList;
     }
     
     public Optional<Employee> getEmployeeById(int id){
         System.out.println("EmployeeService getEmployeeById called.");
-    return employeeDao.getEmployeeById(id);
+        return employeeList.stream().filter(employee-> employee.getId() == id).findFirst();
     }
     
     public int getAnualSalary(int salary) {
@@ -37,7 +41,9 @@ public class EmployeeService {
     }
     
     public int addEmployee(Employee employee) {
-        return employeeDao.addEmployee(employee);
+        employeeList.add(new Employee(employee.getId(), employee.getName(), employee.getContractTypeName(), employee.getRoleId(), employee.getRoleName(), employee.getRoleDescription(), employee.getHourlySalary(), employee.getMonthlySalary()));
+        
+        return 1;
     }
     
 }
