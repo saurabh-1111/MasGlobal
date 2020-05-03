@@ -7,7 +7,7 @@
 	<body>
     <form name="employee">
         Config Name: 
-		<input type="text" id="employeeId" name="employeeId" />
+		<input type="text" id="employeeId" name="employeeId" placeholder="Enter Employee ID"/>
         <input type="button" value="Get Employee" onclick="getEmployeeInfo()" />
 		<div id="employeeInfo"> </div>
     </form>
@@ -30,6 +30,7 @@
 			
 			console.log("hiiiiii " + employeeID);
 			
+			
 			xmlhttp.responseType = 'json';		
 		
         
@@ -38,19 +39,31 @@
             
 			var employees = xmlhttp.response;
 			
-            var tbltop = `<table>
-			    <tr><th>ID</th><th>Name</th><th>ContractTypeName</th><th>RoleId</th><th>RoleId</th><th>RoleName</th><th>RoleDescription</th>+
+			
+			
+            var tbltop = `<table> <table style="width:100%">
+			<style>
+			table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			text-align: left;
+  
+			}
+			tr:nth-child(even) {background-color: #f2f2f2;}
+			</style>
+
+			    <tr><th>ID</th><th>Name</th><th>ContractTypeName</th><th>RoleId</th><th>RoleName</th><th>roleDescription</th>
 				<th>HourlySalary</th><th>MonthlySalary</th><th>AnnualSalary</th></tr>`;
             //main table content we fill from data from the rest call
 			var main ="";
 			if(employeeID > 0){
-			main += "<tr><td>"+employees.id+"</td><td>"+employees.name+"</td><td>"+employees.contractTypeName+"</td>+<td>"+employees.roleId+"</td><td>"+employees.roleName+"</td><td>"+employees.roleDescription+"</td><td>"+employees.hourlySalary+"</td><td>"+employees.monthlySalary+"</td><td>"+employees.annualSalary+"</td></tr>";
+			main += "<tr><td>"+employees.id+"</td><td>"+employees.name+"</td><td>"+employees.contractTypeName+"</td><td>"+employees.roleId+"</td><td>"+employees.roleName+"</td><td>"+employees.roleDescription+"</td><td>"+employees.hourlySalary+"</td><td>"+employees.monthlySalary+"</td><td>"+employees.annualSalary+"</td></tr>";
             
 			
 			}
 			else {
 			for (i = 0; i < employees.length; i++){
-             main += "<tr><td>"+employees[i].id+"</td><td>"+employees[i].name+"</td><td>"+employees[i].contractTypeName+"</td>+<td>"+employees[i].roleId+"</td><td>"+employees[i].roleName+"</td><td>"+employees[i].roleDescription+"</td><td>"+employees[i].hourlySalary+"</td><td>"+employees[i].monthlySalary+"</td><td>"+employees[i].annualSalary+"</td></tr>";
+             main += "<tr><td>"+employees[i].id+"</td><td>"+employees[i].name+"</td><td>"+employees[i].contractTypeName+"</td><td>"+employees[i].roleId+"</td><td>"+employees[i].roleName+"</td><td>"+employees[i].roleDescription+"</td><td>"+employees[i].hourlySalary+"</td><td>"+employees[i].monthlySalary+"</td><td>"+employees[i].annualSalary+"</td></tr>";
             
 			}
 			}
