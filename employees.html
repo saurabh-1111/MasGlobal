@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title> Employee Information </title>
+    <meta charset="UTF-8">
+	</head>
+	
+	<body>
+    <form name="employee">
+        Config Name: 
+		<input type="text" id="employeeId" name="employeeId" />
+        <input type="button" value="Get Employee" onclick="getEmployeeInfo()" />
+		<div id="employeeInfo"> </div>
+    </form>
+	
+    <script type="text/javascript">
+      var baseurl = "http://localhost:8080/api/employee";
+      function getEmployeeInfo(){
+	  
+	  
+	  
+	  var employeeID = parseInt(document.employee.employeeId.value);
+	  
+	  
+        var xmlhttp = new XMLHttpRequest();
+		
+		if(employeeID > 0)
+			xmlhttp.open("GET", baseurl+ "/" + employeeID, true);
+		else
+			xmlhttp.open("GET", baseurl, true);
+			
+			console.log("hiiiiii " + employeeID);
+			
+			xmlhttp.responseType = 'json';		
+		
+        
+        xmlhttp.onreadystatechange = function() {
+          if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+            
+			var employees = xmlhttp.response;
+			
+            var tbltop = `<table>
+			    <tr><th>ID</th><th>Name</th><th>ContractTypeName</th><th>RoleId</th><th>RoleId</th><th>RoleName</th><th>RoleDescription</th>+
+				<th>HourlySalary</th><th>MonthlySalary</th><th>AnnualSalary</th></tr>`;
+            //main table content we fill from data from the rest call
+			var main ="";
+			if(employeeID > 0){
+			main += "<tr><td>"+employees.id+"</td><td>"+employees.name+"</td><td>"+employees.contractTypeName+"</td>+<td>"+employees.roleId+"</td><td>"+employees.roleName+"</td><td>"+employees.roleDescription+"</td><td>"+employees.hourlySalary+"</td><td>"+employees.monthlySalary+"</td><td>"+employees.annualSalary+"</td></tr>";
+            
+			
+			}
+			else {
+			for (i = 0; i < employees.length; i++){
+             main += "<tr><td>"+employees[i].id+"</td><td>"+employees[i].name+"</td><td>"+employees[i].contractTypeName+"</td>+<td>"+employees[i].roleId+"</td><td>"+employees[i].roleName+"</td><td>"+employees[i].roleDescription+"</td><td>"+employees[i].hourlySalary+"</td><td>"+employees[i].monthlySalary+"</td><td>"+employees[i].annualSalary+"</td></tr>";
+            
+			}
+			}
+            var tblbottom = "</table>";
+            var tbl = tbltop + main + tblbottom;
+            document.getElementById("employeeInfo").innerHTML = tbl;
+          }
+        };
+        xmlhttp.send();
+      }
+      
+    </script>
+  
+  
+  </body>
+</html>

@@ -44,9 +44,9 @@ public class EmployeeController {
     }
     
     @GetMapping(path="{id}")
-    public Optional<Employee> getEmployeeById(@PathVariable("id") int id){
+    public Employee getEmployeeById(@PathVariable("id") int id){
         System.out.println("EmployeeController getEmployeeById called.");
-        return employeeService.getEmployeeById(id);
+        return employeeService.getEmployeeById(id).get();
     }
     
     @PostMapping

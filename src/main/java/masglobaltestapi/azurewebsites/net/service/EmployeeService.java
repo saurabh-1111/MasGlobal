@@ -90,6 +90,7 @@ public class EmployeeService {
 
         if(employee.getContractTypeName().equalsIgnoreCase("HourlySalaryEmployee")) {
             employeeContractDao = new EmployeeHourlySalaryContract();
+            //employeeContractDao  =  EmployeeHourlySalaryContract :: getAnnualSalary(employee.getHourlySalary());
             annualSalary = employeeContractDao.getAnnualSalary(employee.getHourlySalary());
             employee.setAnnualSalary(annualSalary);
             
