@@ -159,6 +159,13 @@ public class EmployeeService {
         
         Optional<Employee> employee1 = employeeList.stream().filter(employee-> employee.getId() == id).findFirst();
         
+        // if employee not present with given id return 
+        if(!employee1.isPresent())
+            return null;
+        
+
+
+        
         calculateSalaryforOneEmployee(employee1.get());
         
         return employee1;
