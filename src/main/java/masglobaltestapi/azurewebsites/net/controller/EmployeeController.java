@@ -1,29 +1,23 @@
 package masglobaltestapi.azurewebsites.net.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import javax.validation.Valid;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-
-
 import masglobaltestapi.azurewebsites.net.dto.Employee;
 import masglobaltestapi.azurewebsites.net.service.EmployeeService;
 
+/** 
+* 
+* @author Saurabh Gupta
+* This is the controller class to get requests.
+* Sends corresponding response. 
+*  
+*/
 @CrossOrigin
 @RequestMapping("/api/employee")
 @RestController
@@ -31,33 +25,30 @@ public class EmployeeController {
     
     private final EmployeeService employeeService; 
     
-    @Autowired
+    // dependency injection, avoiding EmployeeService instantiation
+    @Autowired  
     public EmployeeController(EmployeeService employeeService) {
-        System.out.println("EmployeeController called.");
+        
         this.employeeService = employeeService;
     }
     
+    
+    // get info for all the employees by calling /api/employee
     @GetMapping
     public List<Employee> getAllEmployees(){
-        System.out.println("EmployeeController getAllEmployees called.");
+        System.out.println("controller getAllEmployees");
+
         return employeeService.getAllEmployees();
     }
     
+    
+    // get info for given employee id by calling /api/employee/{id}
     @GetMapping(path="{id}")
     public Employee getEmployeeById(@PathVariable("id") int id){
-        System.out.println("EmployeeController getEmployeeById called.");
+        
+        System.out.println("controller getEmployeeById");
+        
         return employeeService.getEmployeeById(id).get();
     }
-    
-    @PostMapping
-    public int addEmployee(@Valid @NonNull @RequestBody Employee employee) {
-        return employeeService.addEmployee(employee);
-    }
-    
-    
-        
-        
-   
-    
     
 }

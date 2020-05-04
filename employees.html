@@ -1,86 +1,99 @@
 <html>
-
-<head>
-    <title> Employee Information </title>
-    <meta charset="UTF-8">
-</head>
-
-<body>
-    <form name="employee">
-        Config Name:
-        <input type="text" id="employeeId" name="employeeId" placeholder="Enter Employee ID" />
-        <input type="button" value="Get Employee" onclick="getEmployeeInfo()" />
-        <div id="employeeInfo"> </div>
-    </form>
-
-    <script type="text/javascript">
-        var baseurl = "http://localhost:8080/api/employee";
-
-        function getEmployeeInfo() {
-
-            var employeeID = parseInt(document.employee.employeeId.value);
-
-            var xmlhttp = new XMLHttpRequest();
-
-            if (employeeID > 0)
-                xmlhttp.open("GET", baseurl + "/" + employeeID, true);
-            else
-                xmlhttp.open("GET", baseurl, true);
-
-            console.log("hiiiiii " + employeeID);
-
-            xmlhttp.responseType = 'json';
-
-            xmlhttp.onreadystatechange = function() {
-
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-
-                    var employees = xmlhttp.response;
-
-                    var tbltop = `<table> <table style="width:100%">
+   <head>
+      <title> Employee Information </title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   </head>
+   <body>
+      <form name="employee">
+         <center>
+            <img width="234" height="100" src="https://masglobalconsulting.com/wp-content/uploads/sites/26/2019/05/MasGlobal_logo_full-1.png">
+            <br><br>
+            <input type="text" id="employeeId" name="employeeId" placeholder="Enter Employee ID" />
+            <input type="button" value="Get Employee" onclick="getEmployeeInfo()" />
+            <br><br>
+            <div id="employeeInfo"> </div>
+         </center>
+      </form>
+      <script type="text/javascript">
+         var baseurl = "http://localhost:8080/api/employee";
+         
+         function getEmployeeInfo() {
+		 
+         var employeeID = document.employee.employeeId.value;
+         
+         var length = employeeID.length;
+         
+         employeeID = parseInt(employeeID);
+		 
+		 if(length != 0 && (employeeID < 0 || isNaN(employeeID))){ // if id is negative or not a number, print the error message and return
+         document.getElementById("employeeInfo").innerHTML = "Please enter valid employee id.";
+         return;
+         }
+         
+         var xmlhttp = new XMLHttpRequest();
+                      
+         if(length == 0)
+                 xmlhttp.open("GET", baseurl, true);
+         else if(employeeID >= 0)
+                 xmlhttp.open("GET", baseurl + "/" + employeeID, true);
+         
+         
+         xmlhttp.responseType = 'json';
+         
+         xmlhttp.onreadystatechange = function() {
+         
+         
+         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+         
+           var employees = xmlhttp.response;
+         
+           var tbltop = `<table> <table style="width:100%" class="table table-hover">
+		   
 			<style>
 			table, th, td {
 			border: 1px solid black;
 			border-collapse: collapse;
 			text-align: left;
-
 			}
 			tr:nth-child(even) {background-color: #f2f2f2;}
 			</style>
-
-			    <tr><th>ID</th><th>Name</th><th>ContractTypeName</th><th>RoleId</th><th>RoleName</th><th>roleDescription</th>
-				<th>HourlySalary</th><th>MonthlySalary</th><th>AnnualSalary</th></tr>`;
-                    //main table content we fill from data from the rest call
-                    var main = "";
-                    if (employeeID > 0) {
-                        main += "<tr><td>" + employees.id + "</td><td>" + employees.name + "</td><td>" + employees.contractTypeName +
-                            "</td><td>" + employees.roleId + "</td><td>" + employees.roleName + "</td><td>" + employees.roleDescription +
-                            "</td><td>" + employees.hourlySalary + "</td><td>" + employees.monthlySalary + "</td><td>" + employees.annualSalary +
-                            "</td></tr>";
-
-                    } else {
-                        var i;
-                        for (i = 0; i < employees.length; i++) {
-                            main += "<tr><td>" + employees[i].id + "</td><td>" + employees[i].name + "</td><td>" +
-                                employees[i].contractTypeName + "</td><td>" + employees[i].roleId + "</td><td>" +
-                                employees[i].roleName + "</td><td>" + employees[i].roleDescription + "</td><td>" +
-                                employees[i].hourlySalary + "</td><td>" + employees[i].monthlySalary + "</td><td>" +
-                                employees[i].annualSalary + "</td></tr>";
-                        }
-
-                    }
-                    var tblbottom = "</table>";
-                    var tbl = tbltop + main + tblbottom;
-                    document.getElementById("employeeInfo").innerHTML = tbl;
-                } else {
-                    document.getElementById("employeeInfo").innerHTML = "Employee information is not found with given id.";
-                }
-
-            };
-            xmlhttp.send();
-        }
-    </script>
-
-</body>
-
+         
+         <tr><th>ID</th><th>Name</th><th>ContractTypeName</th><th>RoleId</th><th>RoleName</th><th>roleDescription</th>
+         <th>HourlySalary</th><th>MonthlySalary</th><th>AnnualSalary</th></tr>`;
+                     //main table content we fill from data from the rest call
+                     var main = "";
+                     if (employeeID > 0) {
+                         main += "<tr><td>" + employees.id + "</td><td>" + employees.name + "</td><td>" + employees.contractTypeName +
+                             "</td><td>" + employees.roleId + "</td><td>" + employees.roleName + "</td><td>" + employees.roleDescription +
+                             "</td><td>" + employees.hourlySalary + "</td><td>" + employees.monthlySalary + "</td><td>" + employees.annualSalary +
+                             "</td></tr>";
+         
+                     } else {
+                         var i;
+                         for (i = 0; i < employees.length; i++) {
+                             main += "<tr><td>" + employees[i].id + "</td><td>" + employees[i].name + "</td><td>" +
+                                 employees[i].contractTypeName + "</td><td>" + employees[i].roleId + "</td><td>" +
+                                 employees[i].roleName + "</td><td>" + employees[i].roleDescription + "</td><td>" +
+                                 employees[i].hourlySalary + "</td><td>" + employees[i].monthlySalary + "</td><td>" +
+                                 employees[i].annualSalary + "</td></tr>";
+                         }
+         
+                     }
+                     var tblbottom = "</table>";
+                     var tbl = tbltop + main + tblbottom;
+                     document.getElementById("employeeInfo").innerHTML = tbl;
+                 } else {
+                     document.getElementById("employeeInfo").innerHTML = "Employee information is not found with given id " + employeeID + ".";
+                 }
+         
+             };
+             xmlhttp.send();
+         }
+      </script>
+   </body>
 </html>

@@ -2,12 +2,14 @@ package masglobaltestapi.azurewebsites.net.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** 
+* 
+* @author Saurabh Gupta
+* This is the dto class which has all attributes of an employee. 
+*  
+*/
 public class Employee {
     
-    
-
-
-
     private final int id;
     private final String name;
     private final String contractTypeName ;
@@ -17,9 +19,7 @@ public class Employee {
     private final int hourlySalary ;
     private final int monthlySalary ;
     private int annualSalary;
-    
  
-
     public Employee(@JsonProperty("id") int id, @JsonProperty("name") String name, 
             @JsonProperty("contractTypeName") String contractTypeName, @JsonProperty("roleId") int roleId, 
             @JsonProperty("roleName") String roleName, @JsonProperty("roleDescription") String roleDescription,
@@ -34,17 +34,10 @@ public class Employee {
         this.hourlySalary = hourlySalary;
         this.monthlySalary = monthlySalary;
         
-        System.out.println("Employee called. id: " + id);
     }
 
 
-
-    
-
-
-
     public int getId() {
-        System.out.println("Employee getId called. id: " + id);
         return id;
     }
 
