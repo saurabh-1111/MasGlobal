@@ -12,3 +12,4 @@ public interface EmployeeContractFactory {
    int getAnnualSalary(int salary);
  
 }
+  

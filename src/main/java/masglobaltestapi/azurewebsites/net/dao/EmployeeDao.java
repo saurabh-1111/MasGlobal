@@ -31,7 +31,7 @@ public class EmployeeDao {
        
         try {
             JSONArray employeeList = new JSONArray(result);
-            
+              
             // returns null if no employee information found
             if(employeeList.length() == 0)
                 return null;

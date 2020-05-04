@@ -19,7 +19,7 @@ public class Employee {
     private final int hourlySalary ;
     private final int monthlySalary ;
     private int annualSalary;
- 
+   
     public Employee(@JsonProperty("id") int id, @JsonProperty("name") String name, 
             @JsonProperty("contractTypeName") String contractTypeName, @JsonProperty("roleId") int roleId, 
             @JsonProperty("roleName") String roleName, @JsonProperty("roleDescription") String roleDescription,

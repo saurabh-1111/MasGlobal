@@ -36,17 +36,14 @@ public class EmployeeController {
     // get info for all the employees by calling /api/employee
     @GetMapping
     public List<Employee> getAllEmployees(){
-        System.out.println("controller getAllEmployees");
 
         return employeeService.getAllEmployees();
     }
     
-    
+      
     // get info for given employee id by calling /api/employee/{id}
     @GetMapping(path="{id}")
     public Employee getEmployeeById(@PathVariable("id") int id){
-        
-        System.out.println("controller getEmployeeById");
         
         return employeeService.getEmployeeById(id).get();
     }

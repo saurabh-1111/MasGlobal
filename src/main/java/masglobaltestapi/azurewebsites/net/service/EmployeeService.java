@@ -135,7 +135,7 @@ public class EmployeeService {
        }
     }
 
-
+  
     /*
      * This method returns employee based on id.
      * Complexity - O(1), if the given employee is the first element of the list
@@ -149,8 +149,6 @@ public class EmployeeService {
         
         if(null == employeeList || employeeList.size() == 0)
             return null;
-        
-        System.out.println("id: " + id);
         
         Optional<Employee> employeeWithGivenId = employeeList.stream()
                                                 .filter(employee-> employee.getId() == id)

@@ -24,4 +24,4 @@ public class EmployeeHourlySalaryContractImpl implements EmployeeContractFactory
         return annualSalary;
   }
     
-}
+}  
